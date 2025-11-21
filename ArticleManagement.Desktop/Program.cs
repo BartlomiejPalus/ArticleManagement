@@ -34,8 +34,9 @@ namespace ArticleManagement.Desktop
 
 					services.AddSingleton<IUserSession, UserSession>();
 
-					services.AddScoped<LoginForm>();
-					services.AddScoped<LoginControl>();
+					services.AddTransient<LoginForm>();
+					services.AddTransient<LoginControl>();
+					services.AddTransient<RegisterControl>();
 				})
 				.Build();
 			
