@@ -15,6 +15,8 @@ namespace ArticleManagement.Desktop.Controls
 	{
 		private readonly IAuthService _authService;
 
+		public event Action RegisterClicked;
+
 		public LoginControl(IAuthService authService)
 		{
 			InitializeComponent();
@@ -57,6 +59,11 @@ namespace ArticleManagement.Desktop.Controls
 
 			Cursor = Cursors.Default;
 			loginButton.Enabled = true;
+		}
+
+		private void registerLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			RegisterClicked.Invoke();
 		}
 	}
 }

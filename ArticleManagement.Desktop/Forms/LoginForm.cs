@@ -14,12 +14,38 @@ namespace ArticleManagement.Desktop.Forms
 {
 	public partial class LoginForm : Form
 	{
-		public LoginForm(LoginControl loginControl)
+		private readonly LoginControl _loginControl;
+		private readonly RegisterControl _registerControl;
+
+		public LoginForm(LoginControl loginControl, RegisterControl registerControl)
 		{
 			InitializeComponent();
 
-			loginControl.Dock = DockStyle.Fill;
-			Controls.Add(loginControl);
+			_loginControl = loginControl;
+			_registerControl = registerControl;
+
+			Controls.Add(_loginControl);
+			Controls.Add(_registerControl);
+
+			_loginControl.Dock = DockStyle.Fill;
+			_registerControl.Dock = DockStyle.Fill;
+
+			SwitchToLogin();
+
+			_loginControl.RegisterClicked += SwitchToRegister;
+			_registerControl.LoginClicked += SwitchToLogin;
+		}
+
+		public void SwitchToRegister()
+		{
+			_loginControl.Visible = false;
+			_registerControl.Visible = true;
+		}
+
+		public void SwitchToLogin()
+		{
+			_registerControl.Visible = false;
+			_loginControl.Visible = true;
 		}
 	}
 }

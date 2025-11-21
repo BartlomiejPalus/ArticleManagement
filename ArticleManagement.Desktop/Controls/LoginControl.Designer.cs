@@ -46,37 +46,37 @@
 			// 
 			// tableLayoutPanel2
 			// 
-			tableLayoutPanel2.ColumnCount = 3;
-			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 250F));
-			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-			tableLayoutPanel2.Controls.Add(loginLabel, 1, 0);
-			tableLayoutPanel2.Controls.Add(emailPanel, 1, 1);
-			tableLayoutPanel2.Controls.Add(passwordPanel, 1, 2);
-			tableLayoutPanel2.Controls.Add(errorLabel, 1, 3);
-			tableLayoutPanel2.Controls.Add(loginButton, 1, 4);
-			tableLayoutPanel2.Controls.Add(registerLabel, 1, 5);
+			tableLayoutPanel2.ColumnCount = 1;
+			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle());
+			tableLayoutPanel2.Controls.Add(loginLabel, 0, 0);
+			tableLayoutPanel2.Controls.Add(emailPanel, 0, 1);
+			tableLayoutPanel2.Controls.Add(passwordPanel, 0, 2);
+			tableLayoutPanel2.Controls.Add(errorLabel, 0, 3);
+			tableLayoutPanel2.Controls.Add(loginButton, 0, 4);
+			tableLayoutPanel2.Controls.Add(registerLabel, 0, 5);
 			tableLayoutPanel2.Dock = DockStyle.Fill;
 			tableLayoutPanel2.Location = new Point(0, 0);
 			tableLayoutPanel2.Name = "tableLayoutPanel2";
 			tableLayoutPanel2.RowCount = 6;
 			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 			tableLayoutPanel2.RowStyles.Add(new RowStyle());
+			tableLayoutPanel2.RowStyles.Add(new RowStyle());
+			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
 			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+			tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
 			tableLayoutPanel2.Size = new Size(450, 400);
 			tableLayoutPanel2.TabIndex = 8;
 			// 
 			// loginLabel
 			// 
 			loginLabel.Anchor = AnchorStyles.None;
+			loginLabel.AutoSize = true;
 			loginLabel.Font = new Font("Segoe UI", 22F);
-			loginLabel.Location = new Point(161, 9);
+			loginLabel.Location = new Point(179, 19);
 			loginLabel.Name = "loginLabel";
 			loginLabel.RightToLeft = RightToLeft.No;
-			loginLabel.Size = new Size(127, 61);
+			loginLabel.Size = new Size(92, 41);
 			loginLabel.TabIndex = 0;
 			loginLabel.Text = "Login";
 			loginLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -88,7 +88,7 @@
 			emailPanel.Controls.Add(emailLabel);
 			emailPanel.Location = new Point(125, 83);
 			emailPanel.Name = "emailPanel";
-			emailPanel.Size = new Size(200, 97);
+			emailPanel.Size = new Size(200, 50);
 			emailPanel.TabIndex = 8;
 			// 
 			// emailTextBox
@@ -117,9 +117,9 @@
 			passwordPanel.Anchor = AnchorStyles.None;
 			passwordPanel.Controls.Add(passwordTextBox);
 			passwordPanel.Controls.Add(passwordLabel);
-			passwordPanel.Location = new Point(125, 186);
+			passwordPanel.Location = new Point(125, 139);
 			passwordPanel.Name = "passwordPanel";
-			passwordPanel.Size = new Size(200, 97);
+			passwordPanel.Size = new Size(200, 50);
 			passwordPanel.TabIndex = 8;
 			// 
 			// passwordTextBox
@@ -150,7 +150,7 @@
 			errorLabel.AutoSize = true;
 			errorLabel.Font = new Font("Segoe UI", 10F);
 			errorLabel.ForeColor = Color.Red;
-			errorLabel.Location = new Point(225, 286);
+			errorLabel.Location = new Point(225, 192);
 			errorLabel.Name = "errorLabel";
 			errorLabel.Size = new Size(0, 19);
 			errorLabel.TabIndex = 9;
@@ -160,7 +160,7 @@
 			loginButton.Anchor = AnchorStyles.None;
 			loginButton.AutoSize = true;
 			loginButton.Font = new Font("Segoe UI", 12F);
-			loginButton.Location = new Point(175, 317);
+			loginButton.Location = new Point(175, 224);
 			loginButton.Margin = new Padding(3, 2, 3, 2);
 			loginButton.Name = "loginButton";
 			loginButton.Size = new Size(100, 31);
@@ -173,12 +173,13 @@
 			// 
 			registerLabel.Anchor = AnchorStyles.Top;
 			registerLabel.AutoSize = true;
-			registerLabel.Location = new Point(137, 360);
+			registerLabel.Location = new Point(137, 267);
 			registerLabel.Name = "registerLabel";
 			registerLabel.Size = new Size(175, 15);
 			registerLabel.TabIndex = 4;
 			registerLabel.TabStop = true;
 			registerLabel.Text = "Don't have an account? Sign Up";
+			registerLabel.LinkClicked += registerLabel_LinkClicked;
 			// 
 			// LoginControl
 			// 

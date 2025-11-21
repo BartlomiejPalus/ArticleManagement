@@ -12,6 +12,8 @@ namespace ArticleManagement.Desktop.Controls
 {
 	public partial class RegisterControl : UserControl
 	{
+		public event Action LoginClicked;
+
 		public RegisterControl()
 		{
 			InitializeComponent();
@@ -19,7 +21,7 @@ namespace ArticleManagement.Desktop.Controls
 
 		private void registerLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			
+			LoginClicked.Invoke();
 		}
 	}
 }
