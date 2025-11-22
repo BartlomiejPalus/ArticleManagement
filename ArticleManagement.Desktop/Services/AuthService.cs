@@ -13,12 +13,12 @@ namespace ArticleManagement.Desktop.Services
 {
 	public class AuthService : IAuthService
 	{
-		private readonly HttpClient _httpClient;
+		private readonly IHttpClientFactory _httpClientFactory;
 		private readonly IUserSession _userSession;
 
-		public AuthService(HttpClient httpClient, IUserSession userSession)
+		public AuthService(IHttpClientFactory httpClientFactory, IUserSession userSession)
 		{
-			_httpClient = httpClient;
+			_httpClientFactory = httpClientFactory;
 			_userSession = userSession;
 		}
 
@@ -30,7 +30,8 @@ namespace ArticleManagement.Desktop.Services
 					return Result.Failure("You are already logged in");
 
 				var dto = new { email, password };
-				var response = await _httpClient.PostAsJsonAsync("auth/login", dto);
+				var httpClient = _httpClientFactory.CreateClient();
+				var response = await httpClient.PostAsJsonAsync("auth/login", dto);
 
 				if (response.IsSuccessStatusCode)
 				{

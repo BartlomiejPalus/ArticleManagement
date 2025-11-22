@@ -26,12 +26,16 @@ namespace ArticleManagement.Desktop
 				{
 					var config = context.Configuration;
 
-					services.AddHttpClient<IAuthService, AuthService>(client =>
+					services.ConfigureHttpClientDefaults(builder =>
 					{
-						client.BaseAddress = new Uri(config["Api:BaseUri"]);
-						client.DefaultRequestHeaders.Add("Accept", "application/json");
+						builder.ConfigureHttpClient(client =>
+						{
+							client.BaseAddress = new Uri(config["Api:BaseUri"]);
+							client.DefaultRequestHeaders.Add("Accept", "application/json");
+						});
 					});
 
+					services.AddScoped<IAuthService, AuthService>();
 					services.AddSingleton<IUserSession, UserSession>();
 
 					services.AddTransient<LoginForm>();
