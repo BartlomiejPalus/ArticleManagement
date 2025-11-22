@@ -1,4 +1,5 @@
-﻿using ArticleManagementAPI.Common.Interfaces;
+﻿using ArticleManagement.API.DTOs;
+using ArticleManagementAPI.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArticleManagementAPI.Middleware
@@ -34,13 +35,13 @@ namespace ArticleManagementAPI.Middleware
 
 			context.Response.StatusCode = statusCode;
 
-			var error = new
+			var apiErrorDto = new ApiErrorDto
 			{
-				status = statusCode,
-				error = message
+				Error = statusCode.ToString(),
+				Message = message
 			};
 
-			await context.Response.WriteAsJsonAsync(error);
+			await context.Response.WriteAsJsonAsync(apiErrorDto);
 		}
 	}
 }

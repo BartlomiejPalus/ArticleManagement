@@ -1,4 +1,5 @@
-﻿using ArticleManagementAPI.Enums;
+﻿using ArticleManagement.API.DTOs;
+using ArticleManagementAPI.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArticleManagementAPI.Common
@@ -43,15 +44,21 @@ namespace ArticleManagementAPI.Common
 			if (result.IsSuccess)
 				throw new InvalidOperationException("Cannot map a successful result to an error response.");
 
+			var apiErrorDto = new ApiErrorDto
+			{ 
+				Error = result.ErrorType.ToString() ?? "500",
+				Message = result.ErrorMessage ?? "Unexpected error"
+			};
+
 			return result.ErrorType switch
 			{
-				ErrorType.BadRequest => controller.BadRequest(result.ErrorMessage),
-				ErrorType.Unauthorized => controller.Unauthorized(result.ErrorMessage),
-				ErrorType.Forbidden => controller.Forbid(),
-				ErrorType.NotFound => controller.NotFound(result.ErrorMessage),
-				ErrorType.Conflict => controller.Conflict(result.ErrorMessage),
-				ErrorType.InternalServerError => controller.StatusCode(500, result.ErrorMessage),
-				_ => controller.StatusCode(500, "Unexpected error")
+				ErrorType.BadRequest => controller.BadRequest(apiErrorDto),
+				ErrorType.Unauthorized => controller.Unauthorized(apiErrorDto),
+				ErrorType.Forbidden => controller.StatusCode(StatusCodes.Status403Forbidden, apiErrorDto),
+				ErrorType.NotFound => controller.NotFound(apiErrorDto),
+				ErrorType.Conflict => controller.Conflict(apiErrorDto),
+				ErrorType.InternalServerError => controller.StatusCode(StatusCodes.Status500InternalServerError, apiErrorDto),
+				_ => controller.StatusCode(StatusCodes.Status500InternalServerError, apiErrorDto)
 			};
 		}
 	}
