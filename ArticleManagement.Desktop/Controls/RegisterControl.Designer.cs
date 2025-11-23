@@ -34,7 +34,7 @@
 			passwordTextBox = new TextBox();
 			passwordLabel = new Label();
 			errorLabel = new Label();
-			RegisterButton = new Button();
+			registerButton = new Button();
 			registerLabel = new LinkLabel();
 			emailPanel = new Panel();
 			emailTextBox = new TextBox();
@@ -55,7 +55,7 @@
 			tableLayoutPanel2.Controls.Add(loginLabel, 0, 0);
 			tableLayoutPanel2.Controls.Add(passwordPanel, 0, 3);
 			tableLayoutPanel2.Controls.Add(errorLabel, 0, 4);
-			tableLayoutPanel2.Controls.Add(RegisterButton, 0, 5);
+			tableLayoutPanel2.Controls.Add(registerButton, 0, 5);
 			tableLayoutPanel2.Controls.Add(registerLabel, 0, 6);
 			tableLayoutPanel2.Controls.Add(emailPanel, 0, 2);
 			tableLayoutPanel2.Controls.Add(namePanel, 0, 1);
@@ -130,18 +130,19 @@
 			errorLabel.Size = new Size(0, 19);
 			errorLabel.TabIndex = 9;
 			// 
-			// RegisterButton
+			// registerButton
 			// 
-			RegisterButton.Anchor = AnchorStyles.None;
-			RegisterButton.AutoSize = true;
-			RegisterButton.Font = new Font("Segoe UI", 12F);
-			RegisterButton.Location = new Point(186, 280);
-			RegisterButton.Margin = new Padding(3, 2, 3, 2);
-			RegisterButton.Name = "RegisterButton";
-			RegisterButton.Size = new Size(77, 31);
-			RegisterButton.TabIndex = 3;
-			RegisterButton.Text = "Register";
-			RegisterButton.UseVisualStyleBackColor = true;
+			registerButton.Anchor = AnchorStyles.None;
+			registerButton.AutoSize = true;
+			registerButton.Font = new Font("Segoe UI", 12F);
+			registerButton.Location = new Point(175, 280);
+			registerButton.Margin = new Padding(3, 2, 3, 2);
+			registerButton.Name = "registerButton";
+			registerButton.Size = new Size(100, 31);
+			registerButton.TabIndex = 3;
+			registerButton.Text = "Register";
+			registerButton.UseVisualStyleBackColor = true;
+			registerButton.Click += registerButton_Click;
 			// 
 			// registerLabel
 			// 
@@ -246,7 +247,7 @@
 		private TextBox passwordTextBox;
 		private Label passwordLabel;
 		private Label errorLabel;
-		private Button RegisterButton;
+		private Button registerButton;
 		private LinkLabel registerLabel;
 		private Panel namePanel;
 		private TextBox nameTextBox;

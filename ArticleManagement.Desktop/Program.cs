@@ -36,6 +36,7 @@ namespace ArticleManagement.Desktop
 					});
 
 					services.AddScoped<IAuthService, AuthService>();
+					services.AddScoped<IUserService, UserService>();
 					services.AddSingleton<IUserSession, UserSession>();
 
 					services.AddTransient<LoginForm>();
