@@ -1,4 +1,5 @@
 ﻿using ArticleManagement.Desktop.Common;
+using ArticleManagement.Desktop.DTOs;
 using ArticleManagement.Desktop.DTOs.Auth;
 using ArticleManagement.Desktop.Services.Interfaces;
 using Microsoft.VisualBasic.Devices;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ArticleManagement.Desktop.Services
@@ -45,7 +47,18 @@ namespace ArticleManagement.Desktop.Services
 				}
 				else
 				{
-					return Result.Failure("Invalid credentials");
+					ApiErrorDto? error = null;
+
+					try
+					{
+						error = await response.Content.ReadFromJsonAsync<ApiErrorDto>();
+					}
+					catch (JsonException)
+					{
+						return Result.Failure("Invalid credentials");
+					}
+					
+					return Result.Failure(error?.Message ?? "Invalid credentials");
 				}
 			}
 			catch (HttpRequestException)
