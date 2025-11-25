@@ -47,18 +47,7 @@ namespace ArticleManagement.Desktop.Services
 				}
 				else
 				{
-					ApiErrorDto? error = null;
-
-					try
-					{
-						error = await response.Content.ReadFromJsonAsync<ApiErrorDto>();
-					}
-					catch (JsonException)
-					{
-						return Result.Failure("Invalid credentials");
-					}
-					
-					return Result.Failure(error?.Message ?? "Invalid credentials");
+					return Result.Failure(await response.GetApiErrorAsync());
 				}
 			}
 			catch (HttpRequestException)

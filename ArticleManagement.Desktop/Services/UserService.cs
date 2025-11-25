@@ -47,18 +47,7 @@ namespace ArticleManagement.Desktop.Services
 				}
 				else
 				{
-					ApiErrorDto? error = null;
-
-					try
-					{
-						error = await response.Content.ReadFromJsonAsync<ApiErrorDto>();
-					}
-					catch (JsonException)
-					{
-						return Result.Failure("Registration failed");
-					}
-					
-					return Result.Failure(error?.Message ?? "Registration failed");
+					return Result.Failure(await response.GetApiErrorAsync());
 				}
 			}
 			catch (HttpRequestException)
