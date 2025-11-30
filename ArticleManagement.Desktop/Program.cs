@@ -39,6 +39,7 @@ namespace ArticleManagement.Desktop
 					services.AddScoped<IUserService, UserService>();
 					services.AddSingleton<IUserSession, UserSession>();
 
+					services.AddTransient<MainForm>();
 					services.AddTransient<LoginForm>();
 					services.AddTransient<LoginControl>();
 					services.AddTransient<RegisterControl>();
@@ -48,7 +49,11 @@ namespace ArticleManagement.Desktop
 			using var scope = host.Services.CreateScope();
 			var loginForm = scope.ServiceProvider.GetRequiredService<LoginForm>();
 
-			Application.Run(loginForm);
+			if (loginForm.ShowDialog() == DialogResult.OK)
+			{
+				var mainForm = scope.ServiceProvider.GetRequiredService<MainForm>();
+				Application.Run(mainForm);
+			}
 		}
 	}
 }

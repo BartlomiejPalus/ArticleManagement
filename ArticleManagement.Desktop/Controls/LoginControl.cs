@@ -50,7 +50,12 @@ namespace ArticleManagement.Desktop.Controls
 
 			if (result.IsSuccess)
 			{
-				this.FindForm()?.Close();
+				var form = FindForm();
+				if (form != null)
+				{
+					form.DialogResult = DialogResult.OK;
+					form.Close();
+				}
 			}
 			else
 			{
